@@ -11,6 +11,12 @@ body {
     margin-right: 200px;
     background-size: 1800px 1200px;
 }
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
 </style>
 </head>
 
@@ -20,33 +26,33 @@ body {
 <p>insert short description later</p>
 
 <!-- Create links to important parts of webpage -->
-<a href="#G1">Interesting graph 1</a>
-<a href="#G2">Interesting graph 2</a>
-<a href="#G3">Interesting graph 3</a>
-<a href="#CALC">Calculate dispatch time</a>
-<a href="#G4">Dispatch time by block</a>
+<ul>
+	<li><a href="#G1">Emergencies by Zipcode</a>
+	<li><a href="#G2">Interesting graph 2</a>
+	<li><a href="#G3">Interesting graph 3</a>
+	<li><a href="#CALC">Calculate dispatch time</a>
+	<li><a href="#G4">Dispatch time by block</a>
+</ul>
+
+<br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
 
 <!-- Insert interesting graph 1 -->
-<h4 id="G1">Interesting Graph 1</h4>
 <p>short description</p>
-<img src="graph1.jpg" alt="Interesting feature 1" width="104" height="142">
+<img  id="G1" src="freq_of_zipcodes.png" alt="Interesting feature 1" width="700" height="700">
 
 <!-- Interesting graph 2 -->
-<h4 id="G2">Interesting graph 2</h4>
 <p>short description</p>
-<img src="graph2.jpg" alt="Interesting feature 2" width="104" height="142">
+<img id ="G2" src="graph2.jpg" alt="Interesting feature 2" width="700" height="700">
 
 <!-- Interesting graph 3 -->
-<h4 id="G3">Interesting graph 3</h4>
 <p>short description</p>
-<img src="graph3.jpg" alt="Interesting feature 3" width="104" height="142">
+<img id="G3" src="graph3.jpg" alt="Interesting feature 3" width="700" height="700">
 
 <!-- Calculates dispatch given address and time -->
-<h4 id="CALC">Calculate dispatch time</h2>
+<h4 style="text-align:center;" id="CALC">Calculate dispatch time</h2>
 
 <!-- Longest dispatch -->
-<h5 id="G4">Dispatch time by block</h5>
-<img src="graph4.jpg" alt="Longest dispatch" width="104" height="142">
+<img id="G4" src="graph4.jpg" alt="Longest dispatch" width="700" height="700">
 <p>How dispatch time can be reduced<p>
 
 
