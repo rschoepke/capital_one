@@ -32,6 +32,7 @@ for(i in 1:length(names)) {
   all_data = cbind(temp_data[i + 2], all_data)
 }
 
+# Create graph showing frequency of emergencies by zipcode and save to png file
 vector = unlist(as.numeric(all_data$zipcode_of_incident), use.names = FALSE)
 counts = table(vector)
 setwd("C:/Users/rache/Desktop/Capital\ One")
@@ -39,3 +40,71 @@ png("freq_of_zipcodes.png")
 barplot(counts, xlab = "Zipcodes", ylab = "Frequency", las = 2, cex.names = 0.8, cex.axis = 0.8, col =  "firebrick",
         main = "Frequency of Emergencies by Zipcode")
 dev.off()
+
+#Create a dataframe to also hold their corresponding start and end times
+#For each element in the vector, call the function
+#Function: run through the column of the data frame, find the difference between start and end times
+#Add this difference to a sum and increase the count for that member
+#Store average in dataframe
+#Move to next element
+
+# Make vector of all the different emergency types
+temp_vector = unlist(all_data$call_type, use.names = FALSE)
+emergency_types = unique(temp_vector)
+
+# Make vectors of all the call received and fulfilled times
+temp_times = unlist(all_data[,2], use.names = FALSE)
+received_times = c()
+fulfilled_times = c()
+
+for(i in 1:length(temp_times)) {
+  # Received
+  time = all_data[i,23]
+  time2 = as.numeric(unlist(strsplit(time, ":")))
+  mins = time2[1] * 60 + time2[2] + time2[3] / 60
+  received_times = c(received_times, mins)
+  
+  #Fulfilled
+  time = all_data[i, 11]
+  time2 = as.numeric(unlist(strsplit(time, ":")))
+  mins = time2[1] * 60 + time2[2] + time2[3] / 60
+  fulfilled_times = c(fulfilled_times, mins)
+}
+
+averages = c()
+
+for(i in emergency_types) {
+  sum = 0
+  count = 0
+  for (j in 1:length(received_times)) {
+    if (i == all_data[j, 28]) {
+      # Account for times after midnight
+      if (!is.na(fulfilled_times[j]) & fulfilled_times[j] >= 1440 & received_times[j] < 1440) {
+        add_to_sum = (1440 - received_times[j]) + (fulfilled_times[j] - 1440)
+        if (j == 1) {
+        }
+      }
+      else if (!is.na(fulfilled_times[j]) & received_times[j] >= 1440 & fulfilled_times[j] < 1440) {
+        add_to_sum = (1500 - fulfilled_times[j]) + (received_times[j] - 60)
+        if (j == 1) {
+        }
+      }
+      else if (!is.na(fulfilled_times[j])) {
+        add_to_sum = fulfilled_times[j] - received_times[j]
+        if (j == 1) {
+          print(fulfilled_times[1])
+          print(received_times[1])
+        }
+      }
+      # For finding the average
+      sum = sum + add_to_sum
+      count = count + 1
+    }
+  }
+  average = sum / count
+  averages = c(averages, average)
+}
+
+graph_data = data.frame(emergency_types, averages)
+print(graph_data)
+plot(graph_data[,1], graph_data[,2], type="s")
