@@ -79,22 +79,15 @@ for(i in emergency_types) {
   for (j in 1:length(received_times)) {
     if (i == all_data[j, 28]) {
       # Account for times after midnight
-      if (!is.na(fulfilled_times[j]) & fulfilled_times[j] >= 1440 & received_times[j] < 1440) {
-        add_to_sum = (1440 - received_times[j]) + (fulfilled_times[j] - 1440)
-        if (j == 1) {
-        }
-      }
-      else if (!is.na(fulfilled_times[j]) & received_times[j] >= 1440 & fulfilled_times[j] < 1440) {
-        add_to_sum = (1500 - fulfilled_times[j]) + (received_times[j] - 60)
-        if (j == 1) {
-        }
+      if (!is.na(fulfilled_times[j]) & fulfilled_times[j] < received_times[j]) {
+        add_to_sum = (1440 - received_times[j]) + fulfilled_times[j]
       }
       else if (!is.na(fulfilled_times[j])) {
         add_to_sum = fulfilled_times[j] - received_times[j]
-        if (j == 1) {
-          print(fulfilled_times[1])
-          print(received_times[1])
-        }
+      }
+      else {
+        add_to_sum = 0
+        count = count - 1
       }
       # For finding the average
       sum = sum + add_to_sum
@@ -104,6 +97,9 @@ for(i in emergency_types) {
   average = sum / count
   averages = c(averages, average)
 }
+
+print(emergency_types)
+print(averages)
 
 graph_data = data.frame(emergency_types, averages)
 print(graph_data)
