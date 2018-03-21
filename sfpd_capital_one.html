@@ -22,13 +22,18 @@ ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    width: 200px;
+    overflow: hidden;
     background-color: #f1f1f1;
+}
+
+li {
+    float: left;
 }
 
 li a {
     display: block;
     color: #000;
+    text-align: center;
     padding: 8px 16px;
     text-decoration: none;
 }
@@ -45,6 +50,8 @@ li a:hover {
 <!-- <body background="golden_gate.jpg" > -->
 <h1 style="color:rgb(230, 0, 0)">Emergency Response Times in San Francisco</h1>
 
+<br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+
 <!-- Create links to important parts of webpage -->
 <ul>
 	<li><a href="#G1">Emergencies by Zipcode</a>
@@ -54,15 +61,15 @@ li a:hover {
 	<li><a href="#G4">Dispatch time by block</a>
 </ul>
 
-<br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+<br> <br> <br> <br> <br>
 
 <!-- Insert interesting graph 1 -->
 <p>short description</p>
-<img  id="G1" src="freq_of_zipcodes.png" alt="Interesting feature 1" width="700" height="700">
+<img  id="G1" src="freq_of_zipcodes.png" alt="Frequency of emergencies by zipcode" width="700" height="700">
 
 <!-- Interesting graph 2 -->
 <p>short description</p>
-<img id ="G2" src="graph2.jpg" alt="Interesting feature 2" width="700" height="700">
+<img id ="G2" src="response_by_type.png" alt="Average response time by emergency type" width="700" height="700">
 
 <!-- Interesting graph 3 -->
 <p>short description</p>

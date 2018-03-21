@@ -98,9 +98,14 @@ for(i in emergency_types) {
   averages = c(averages, average)
 }
 
-print(emergency_types)
-print(averages)
-
 graph_data = data.frame(emergency_types, averages)
-print(graph_data)
-plot(graph_data[,1], graph_data[,2], type="s")
+
+setwd("C:/Users/rache/Desktop/Capital\ One")
+png("response_by_type.png")
+mar.default <- c(5,4,4,2) + 0.1
+par(mar = mar.default + c(7, 0, 0, 0))
+barplot(graph_data[,2], xlab="", ylab="Average Respnse Time", 
+     main="Average Response Time by Emergency Type", las = 2, cex.names = 0.8, 
+     cex.axis = 0.8, names.arg = graph_data[,1], col = "firebrick")
+mtext("Emergency Type", side=1, line=10, cex.lab = 0.8)
+dev.off()
