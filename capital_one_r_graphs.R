@@ -110,7 +110,6 @@ dev.off()
 # Make vector of all the different zipcodes
 temp_vector = unlist(all_data$zipcode_of_incident, use.names = FALSE)
 zipcodes = unique(temp_vector)
-print(zipcodes)
 
 # Find the average response time for each emergency type
 averages = c()
@@ -150,3 +149,24 @@ barplot(graph_data[,2], xlab="Zipcode", ylab="Average Respnse Time",
         main="Average Response Time by Zipcode", las = 2, cex.names = 0.8, 
         cex.axis = 0.8, names.arg = graph_data[,1], col = "firebrick")
 dev.off()
+
+freq = c()
+for (i in emergency_types) {
+  count = 0
+  for (j in 1:length(all_data[,28])) {
+    if(all_data[j, 28] == i) {
+      count = count + 1
+    }
+  }
+  freq = c(freq, count)
+}
+
+# Graph and save average response times
+setwd("C:/Users/rache/Desktop/Capital\ One")
+png("incident_freq.png")
+pie(x = freq, labels = c(emergency_types[1], emergency_types[2], emergency_types[3],
+    emergency_types[4]), main = "Incident Type Frequency", col = rainbow(length(freq)))
+legend("topright", emergency_types, cex = 0.65,
+       fill = rainbow(length(freq)))
+dev.off()
+

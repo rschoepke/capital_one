@@ -61,7 +61,7 @@ function time_and_address() {
 
 <!-- Set background and header -->
 <!-- <body background="golden_gate.jpg" > -->
-<h1 style="color:rgb(230, 0, 0)">Emergency Response Times in San Francisco</h1>
+<h1 style="color:rgb(230, 0, 0)">Emergency Response in San Francisco</h1>
 
 <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
 
@@ -69,7 +69,7 @@ function time_and_address() {
 <ul>
 	<li><a href="#G1">Emergencies by Zipcode</a>
 	<li><a href="#G2">Response Time by Emergency Type</a>
-	<li><a href="#G3">Interesting graph 3</a>
+	<li><a href="#G3">Incident Frequcency</a>
 	<li><a href="#CALC">Calculate dispatch</a>
 	<li><a href="#G4">Dispatch Time by Zipcode</a>
 </ul>
@@ -83,7 +83,7 @@ function time_and_address() {
 <img id ="G2" src="response_by_type.png" alt="Average response time by emergency type" width="700" height="700">
 
 <!-- Interesting graph 3 -->
-<img id="G3" src="graph3.jpg" alt="Interesting feature 3" width="700" height="700">
+<img id="G3" src="incident_freq.png" alt="Incident Frequency" width="700" height="700">
 
 <!-- Calculates dispatch given address and time -->
 <h4 style="text-align:center;" id="CALC">Calculate dispatch time</h2>
@@ -92,7 +92,7 @@ Time:<br>
 <input type="datetime-local" name="time" id="time_input">
 <br>
 Address:<br>
-<input type="text" name="address" id="address_input">
+<input type="text" name="address" id="address_input" value="Street, City, State Zipcode" style="width: 185px">
 <br><br>
 </form>
 <button style="center" onclick="time_and_address()">Submit</button>
