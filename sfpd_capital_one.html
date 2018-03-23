@@ -22,6 +22,7 @@ ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
+    width: 1800px;
     overflow: hidden;
     background-color: #f1f1f1;
 }
@@ -43,8 +44,20 @@ li a:hover {
     background-color: #555;
     color: white;
 }
+form {
+	text-align: center;
+}
 </style>
 </head>
+
+<script>
+
+function time_and_address() {
+	//do calculations to find correct output
+	document.getElementById("output").innerHTML = "Output";
+}
+
+</script>
 
 <!-- Set background and header -->
 <!-- <body background="golden_gate.jpg" > -->
@@ -55,31 +68,38 @@ li a:hover {
 <!-- Create links to important parts of webpage -->
 <ul>
 	<li><a href="#G1">Emergencies by Zipcode</a>
-	<li><a href="#G2">Interesting graph 2</a>
+	<li><a href="#G2">Response Time by Emergency Type</a>
 	<li><a href="#G3">Interesting graph 3</a>
-	<li><a href="#CALC">Calculate dispatch time</a>
-	<li><a href="#G4">Dispatch time by block</a>
+	<li><a href="#CALC">Calculate dispatch</a>
+	<li><a href="#G4">Dispatch Time by Zipcode</a>
 </ul>
 
 <br> <br> <br> <br> <br>
 
 <!-- Insert interesting graph 1 -->
-<p>short description</p>
 <img  id="G1" src="freq_of_zipcodes.png" alt="Frequency of emergencies by zipcode" width="700" height="700">
 
 <!-- Interesting graph 2 -->
-<p>short description</p>
 <img id ="G2" src="response_by_type.png" alt="Average response time by emergency type" width="700" height="700">
 
 <!-- Interesting graph 3 -->
-<p>short description</p>
 <img id="G3" src="graph3.jpg" alt="Interesting feature 3" width="700" height="700">
 
 <!-- Calculates dispatch given address and time -->
 <h4 style="text-align:center;" id="CALC">Calculate dispatch time</h2>
+<form>
+Time:<br>
+<input type="datetime-local" name="time" id="time_input">
+<br>
+Address:<br>
+<input type="text" name="address" id="address_input">
+<br><br>
+</form>
+<button style="center" onclick="time_and_address()">Submit</button>
+<p id="output"></p>
 
 <!-- Longest dispatch -->
-<img id="G4" src="graph4.jpg" alt="Longest dispatch" width="700" height="700">
+<img id="G4" src="response_by_zipcode.png" alt="Longest dispatch" width="700" height="700">
 <p>How dispatch time can be reduced<p>
 
 
