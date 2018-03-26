@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>Page Title</title>
+<style>
+body {
+    background-image: url("golden_gate3.png");
+    background-repeat: no-repeat;
+    background-position: middle;
+    margin-right: 200px;
+    background-size: 1800px 1200px;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 1800px;
+    overflow: hidden;
+    background-color: #f1f1f1;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: #000;
+    text-align: center;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color on hover */
+li a:hover {
+    background-color: #555;
+    color: white;
+}
+</style>
+
+<script>
+function time_and_address() {
+    var date_and_time = document.getElementById("time_input").value.split(" ");
+
+    // Get time
+    var temp_time = date_and_time[1];
+    var time_split = temp_time.split(":");
+    var hour = parseInt(time_split[0]);
+    var min = parseInt(time_split[1]);
+    var am_pm = date_and_time[2];
+
+    // Account for non-military times
+    var time = 0;
+    if (am_pm == "pm" || am_pm == "PM") {
+    	if (hour == 12) {
+    		time = hour * 60 + min;
+    	}
+    	else {
+    		time = hour * 60 + 720 + min;
+    	}
+    }
+    else {
+    	if (hour == 12) {
+    		time = min;
+    	}
+    	else {
+    		time = hour * 60 + min;
+    	} 
+    }
+
+   
+    // Get zipcode
+    var address = document.getElementById("address_input").value.split(" ");
+    var zipcode = address[address.length - 1];
+
+    // Provides response
+    var output = "";
+    if (have_data(zipcode)) {
+    	output += "Dispatch type: " + find_dispatch(zipcode, time);
+    }
+    else {
+    	output += "Sorry! No data for that address!";
+    }
+
+    // Print output to webpage on the click of submit
+    document.getElementById("output").innerHTML = output;
+}
+
+// Determines if data is available for the input
+function have_data(zipcode) {
+	if (zipcode == "94121" || zipcode == "94103" || zipcode == "94122" || zipcode == "94109" ||
+		zipcode == "94107" || zipcode == "94110" || zipcode == "94102" || zipcode == "94133" ||
+		zipcode == "94134" || zipcode == "94111" || zipcode == "94114" || zipcode == "94131" ||
+		zipcode == "94117" || zipcode == "94112" || zipcode == "94118" || zipcode == "94158" ||
+		zipcode == "94105" || zipcode == "94115" || zipcode == "94108" || zipcode == "94124" ||
+		zipcode == "94104" || zipcode == "94116" || zipcode == "94123" || zipcode == "94127" ||
+		zipcode == "94132" || zipcode == "94130" || zipcode == "94129") {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+// Determines dispatch based on frequencies given in the given data
+function find_dispatch(zipcode, time) {
+	var rand = Math.random();
+	if (zipcode == 94121 && time < 480) {
+		if(rand < 0.35) { return "Medical"; }
+		else if (rand < 0.62) { return "Engine"; }
+		else { return "Private"; }
+	}
+	else if (zipcode == 94121 && time < 960) {
+		if(rand < 0.37) { return "Engine"; }
+		else if (rand < 0.63) { return "Medical"; }
+		else { return "Private"; }
+	}
+	 else if (zipcode == 94121 && time < 1440) {
+		if(rand < 0.4) { return "Engine"; }
+		else if (rand < 0.74) { return "Medical"; }
+		else { return "Private"; }
+	}
+
+	else if (zipcode == 94103 && time < 480) {
+		if(rand < 0.37) { return "Medical"; }
+		else if (rand < 0.69) { return "Engine"; }
+		else { return "Private"; }
+	}
+	else if (zipcode == 94103 && time < 960) {
+		if(rand < 0.32) { return "Medical"; }
+		else if (rand < 0.63) { return "Engine"; }
+		else { return "Private"; }
+	}
+	 else if (zipcode == 94103 && time < 1440) {
+		if(rand < 0.36) { return "Engine"; }
+		else if (rand < 0.7) { return "Medical"; }
+		else { return "Private"; }
+	}
+
+	else if (zipcode == 94122 && time < 480) {
+		if(rand < 0.37) { return "Medical"; }
+		else if (rand < 0.71) { return "Engine"; }
+		else { return "Chief"; }
+	}
+	else if (zipcode == 94122 && time < 960) {
+		if(rand < 0.42) { return "Engine"; }
+		else if (rand < 0.67) { return "Medical"; }
+		else { return "Private"; }
+	}
+	 else if (zipcode == 94122 && time < 1440) {
+		if(rand < 0.43) { return "Engine"; }
+		else if (rand < 0.69) { return "Medical"; }
+		else { return "Truck"; }
+	}
+
+	else if (zipcode == 94109 && time < 480) {
+		if(rand < 0.34) { return "Engine"; }
+		else if (rand < 0.62) { return "Medical"; }
+		else { return "Private"; }
+	}
+	else if (zipcode == 94109 && time < 960) {
+		if(rand < 0.35) { return "Engine"; }
+		else if (rand < 0.59) { return "Medical"; }
+		else { return "Private"; }
+	}
+	 else if (zipcode == 94109 && time < 1440) {
+		if(rand < 0.37) { return "Engine"; }
+		else if (rand < 0.72) { return "Medical"; }
+		else { return "Private"; }
+	}
+
+	else if (zipcode == 94107 && time < 480) {
+		if(rand < 0.37) { return "Medical"; }
+		else if (rand < 0.68) { return "Engine"; }
+		else { return "Private"; }
+	}
+	else if (zipcode == 94107 && time < 960) {
+		if(rand < 0.39) { return "Engine"; }
+		else if (rand < 0.66) { return "Medical"; }
+		else { return "Truck"; }
+	}
+	 else if (zipcode == 94107 && time < 1440) {
+		if(rand < 0.36) { return "Engine"; }
+		else if (rand < 0.71) { return "Medical"; }
+		else { return "Truck"; }
+	}
+
+	else if (zipcode == 94110 && time < 480) {
+		if(rand < 0.33) { return "Engine"; }
+		else if (rand < 0.63) { return "Medical"; }
+		else { return "Private"; }
+	}
+	else if (zipcode == 94110 && time < 960) {
+		if(rand < 0.38) { return "Medical"; }
+		else if (rand < 0.73) { return "Engine"; }
+		else { return "Truck"; }
+	}
+	 else if (zipcode == 94110 && time < 1440) {
+		if(rand < 0.36) { return "Medial"; }
+		else if (rand < 0.71) { return "Engine"; }
+		else { return "Chief"; }
+	}
+
+	else if (zipcode == 94102 && time < 480) {
+		if(rand < 0.33) { return "Engine"; }
+		else if (rand < 0.64) { return "Medical"; }
+		else { return "Private"; }
+	}
+	else if (zipcode == 94102 && time < 960) {
+		if(rand < 0.36) { return "Engine"; }
+		else if (rand < 0.63) { return "Medical"; }
+		else { return "Private"; }
+	}
+	 else if (zipcode == 94102 && time < 1440) {
+		if(rand < 0.36) { return "Engine"; }
+		else if (rand < 0.69) { return "Medical"; }
+		else { return "Truck"; }
+	}
+
+	else if (zipcode == 94133 && time < 480) {
+		if(rand < 0.42) { return "Engine"; }
+		else if (rand < 0.79) { return "Medical"; }
+		else { return "Private"; }
+	}
+	else if (zipcode == 94133 && time < 960) {
+		if(rand < 0.37) { return "Engine"; }
+		else if (rand < 0.57) { return "Medical"; }
+		else { return "Private"; }
+	}
+	 else if (zipcode == 94133 && time < 1440) {
+		if(rand < 0.38) { return "Engine"; }
+		else if (rand < 0.60) { return "Medical"; }
+		else { return "Private"; }
+	}
+
+	else if (zipcode == 94134 && time < 480) {
+		if(rand < 0.34) { return "Medical"; }
+		else if (rand < 0.63) { return "Engine"; }
+		else { return "Private"; }
+	}
+	else if (zipcode == 94134 && time < 960) {
+		if(rand < 0.41) { return "Medical"; }
+		else if (rand < 0.77) { return "Engine"; }
+		else { return "Chief"; }
+	}
+	 else if (zipcode == 94134 && time < 1440) {
+		if(rand < 0.41) { return "Engine"; }
+		else if (rand < 0.71) { return "Medical"; }
+		else { return "Truck"; }
+	}
+
+	else if (zipcode == 94111 && time < 480) {
+		if(rand < 0.37) { return "Engine"; }
+		else if (rand < 0.69) { return "Medical"; }
+		else { return "Chief"; }
+	}
+	else if (zipcode == 94111 && time < 960) {
+		if(rand < 0.38) { return "Engine"; }
+		else if (rand < 0.61) { return "Medical"; }
+		else { return "Private"; }
+	}
+	 else if (zipcode == 94111 && time < 1440) {
+		if(rand < 0.4) { return "Engine"; }
+		else if (rand < 0.78) { return "Medical"; }
+		else { return "Truck"; }
+	}
+
+	else if (zipcode == 94114 && time < 480) {
+		if(rand < 0.35) { return "Engine"; }
+		else if (rand < 0.68) { return "Medical"; }
+		else { return "Private"; }
+	}
+	else if (zipcode == 94114 && time < 960) {
+		if(rand < 0.36) { return "Engine"; }
+		else if (rand < 0.63) { return "Medical"; }
+		else { return "Chief"; }
+	}
+	 else if (zipcode == 94114 && time < 1440) {
+		if(rand < 0.37) { return "Engine"; }
+		else if (rand < 0.71) { return "Medical"; }
+		else { return "Private"; }
+	}
+
+	else if (zipcode == 94131 && time < 480) {
+		if(rand < 0.44) { return "Medical"; }
+		else if (rand < 0.82) { return "Engine"; }
+		else { return "Rescue Captain"; }
+	}
+	else if (zipcode == 94131 && time < 960) {
+		if(rand < 0.42) { return "Medical"; }
+		else if (rand < 0.73) { return "Engine"; }
+		else { return "Private"; }
+	}
+	 else if (zipcode == 94131 && time < 1440) {
+		if(rand < 0.38) { return "Engine"; }
+		else if (rand < 0.65) { return "Medical"; }
+		else { return "Chief"; }
+	}
+
+	else if (zipcode == 94117 && time < 480) {
+		if(rand < 0.40) { return "Engine"; }
+		else if (rand < 0.73) { return "Medical"; }
+		else { return "Private"; }
+	}
+	else if (zipcode == 94117 && time < 960) {
+		if(rand < 0.36) { return "Engine"; }
+		else if (rand < 0.59) { return "Medical"; }
+		else { return "Private"; }
+	}
+	 else if (zipcode == 94117 && time < 1440) {
+		if(rand < 0.33) { return "Engine"; }
+		else if (rand < 0.54) { return "Medical"; }
+		else { return "Truck"; }
+	}
+
+	else if (zipcode == 94112 && time < 480) {
+		if(rand < 0.36) { return "Engine"; }
+		else if (rand < 0.62) { return "Medical"; }
+		else { return "Private"; }
+	}
+	else if (zipcode == 94112 && time < 960) {
+		if(rand < 0.37) { return "Engine"; }
+		else if (rand < 0.7) { return "Medical"; }
+		else { return "Truck"; }
+	}
+	 else if (zipcode == 94112 && time < 1440) {
+		if(rand < 0.38) { return "Medical"; }
+		else if (rand < 0.75) { return "Engine"; }
+		else { return "Private"; }
+	}
+
+	else if (zipcode == 94118 && time < 480) {
+		if(rand < 0.45) { return "Medical"; }
+		else if (rand < 0.83) { return "Engine"; }
+		else { return "Rescue Captain"; }
+	}
+	else if (zipcode == 94118 && time < 960) {
+		if(rand < 0.36) { return "Engine"; }
+		else if (rand < 0.65) { return "Medical"; }
+		else { return "Private"; }
+	}
+	 else if (zipcode == 94118 && time < 1440) {
+		if(rand < 0.39) { return "Engine"; }
+		else if (rand < 0.57) { return "Medical"; }
+		else { return "Private"; }
+	}
+
+	else if (zipcode == 94158 && time < 480) {
+		if(rand < 0.4) { return "Medical"; }
+		else if (rand < 0.6) { return "Private"; }
+		else { return "Truck"; }
+	}
+	else if (zipcode == 94158 && time < 960) {
+		if(rand < 0.36) { return "Engine"; }
+		else if (rand < 0.68) { return "Medical"; }
+		else { return "Chief"; }
+	}
+	 else if (zipcode == 94158 && time < 1440) {
+		if(rand < 0.39) { return "Engine"; }
+		else if (rand < 0.68) { return "Medical"; }
+		else { return "Truck"; }
+	}
+
+	else if (zipcode == 94105 && time < 480) {
+		if(rand < 0.34) { return "Engine"; }
+		else if (rand < 0.64) { return "Medical"; }
+		else { return "Private"; }
+	}
+	else if (zipcode == 94105 && time < 960) {
+		if(rand < 0.34) { return "Engine"; }
+		else if (rand < 0.52) { return "Medical"; }
+		else { return "Truck"; }
+	}
+	 else if (zipcode == 94105 && time < 1440) {
+		if(rand < 0.33) { return "Engine"; }
+		else if (rand < 0.67) { return "Medical"; }
+		else { return "Chief"; }
+	}
+
+	else if (zipcode == 94115 && time < 480) {
+		if(rand < 0.38) { return "Engine"; }
+		else if (rand < 0.65) { return "Medical"; }
+		else { return "Private"; }
+	}
+	else if (zipcode == 94115 && time < 960) {
+		if(rand < 0.41) { return "Engine"; }
+		else if (rand < 0.64) { return "Medical"; }
+		else { return "Private"; }
+	}
+	 else if (zipcode == 94115 && time < 1440) {
+		if(rand < 0.36) { return "Engine"; }
+		else if (rand < 0.62) { return "Medical"; }
+		else { return "Truck"; }
+	}
+
+	else if (zipcode == 94108 && time < 480) {
+		if(rand < 0.34) { return "Engine"; }
+		else if (rand < 0.57) { return "Medical"; }
+		else { return "Private"; }
+	}
+	else if (zipcode == 94108 && time < 960) {
+		if(rand < 0.34) { return "Engine"; }
+		else if (rand < 0.62) { return "Medical"; }
+		else { return "Truck"; }
+	}
+	 else if (zipcode == 94108 && time < 1440) {
+		if(rand < 0.33) { return "Engine"; }
+		else if (rand < 0.54) { return "Medical"; }
+		else { return "Truck"; }
+	}
+
+	else if (zipcode == 94124 && time < 480) {
+		if(rand < 0.41) { return "Engine"; }
+		else if (rand < 0.72) { return "Medical"; }
+		else { return "Chief"; }
+	}
+	else if (zipcode == 94124 && time < 960) {
+		if(rand < 0.42) { return "Medical"; }
+		else if (rand < 0.8) { return "Engine"; }
+		else { return "Truck"; }
+	}
+	 else if (zipcode == 94124 && time < 1440) {
+		if(rand < 0.43) { return "Medical"; }
+		else if (rand < 0.77) { return "Engine"; }
+		else { return "Private"; }
+	}
+
+	else if (zipcode == 94104 && time < 480) {
+		if(rand < 0.33) { return "Engine"; }
+		else if (rand < 0.55) { return "Medical"; }
+		else { return "Chief"; }
+	}
+	else if (zipcode == 94104 && time < 960) {
+		if(rand < 0.36) { return "Engine"; }
+		else if (rand < 0.57) { return "Private"; }
+		else { return "Medical"; }
+	}
+	 else if (zipcode == 94104 && time < 1440) {
+		if(rand < 0.34) { return "Engine"; }
+		else if (rand < 0.65) { return "Truck"; }
+		else { return "Medical"; }
+	}
+
+	else if (zipcode == 94116 && time < 480) {
+		if(rand < 0.39) { return "Engine"; }
+		else if (rand < 0.76) { return "Medical"; }
+		else { return "Private"; }
+	}
+	else if (zipcode == 94116 && time < 960) {
+		if(rand < 0.41) { return "Engine"; }
+		else if (rand < 0.74) { return "Medical"; }
+		else { return "Private"; }
+	}
+	 else if (zipcode == 94116 && time < 1440) {
+		if(rand < 0.38) { return "Engine"; }
+		else if (rand < 0.65) { return "Medical"; }
+		else { return "Private"; }
+	}
+
+	else if (zipcode == 94123 && time < 480) {
+		if(rand < 0.38) { return "Engine"; }
+		else if (rand < 0.69) { return "Medical"; }
+		else { return "Private"; }
+	}
+	else if (zipcode == 94123 && time < 960) {
+		if(rand < 0.36) { return "Engine"; }
+		else if (rand < 0.53) { return "Medical"; }
+		else { return "Private"; }
+	}
+	 else if (zipcode == 94123 && time < 1440) {
+		if(rand < 0.36) { return "Engine"; }
+		else if (rand < 0.55) { return "Medical"; }
+		else { return "Private"; }
+	}
+
+	else if (zipcode == 94127 && time < 480) {
+		if(rand < 0.5) { return "Engine"; }
+		else { return "Medical"; }
+	}
+	else if (zipcode == 94127 && time < 960) {
+		if(rand < 0.36) { return "Engine"; }
+		else if (rand < 0.68) { return "Medical"; }
+		else { return "Chief"; }
+	}
+	 else if (zipcode == 94127 && time < 1440) {
+		if(rand < 0.45) { return "Engine"; }
+		else if (rand < 0.58) { return "Medical"; }
+		else { return "Truck"; }
+	}
+
+	else if (zipcode == 94132 && time < 480) {
+		if(rand < 0.5) { return "Engine"; }
+		else { return "Medical"; }
+	}
+	else if (zipcode == 94132 && time < 960) {
+		if(rand < 0.38) { return "Engine"; }
+		else if (rand < 0.74) { return "Medical"; }
+		else { return "Truck"; }
+	}
+	 else if (zipcode == 94132 && time < 1440) {
+		if(rand < 0.39) { return "Engine"; }
+		else if (rand < 0.67) { return "Medical"; }
+		else { return "Truck"; }
+	}
+
+	else if (zipcode == 94130 && time < 480) {
+		if(rand < 0.5) { return "Medical"; }
+		else if (rand < 0.79) { return "Engine"; }
+		else { return "Private"; }
+	}
+	else if (zipcode == 94130 && time < 960) {
+		if(rand < 0.26) { return "Engine"; }
+		else if (rand < 0.52) { return "Medical"; }
+		else { return "Truck"; }
+	}
+	 else if (zipcode == 94130 && time < 1440) {
+		if(rand < 0.33) { return "Engine"; }
+		else { return "Medical"; }
+	}
+
+	else if (zipcode == 94129 && time < 480) {
+		if(rand < 0.33) { return "Engine"; }
+		else if (rand < 0.5) { return "Medical"; }
+		else { return "Private"; }
+	}
+	else if (zipcode == 94129 && time < 960) {
+		if(rand < 0.44) { return "Engine"; }
+		else if (rand < 0.71) { return "Medical"; }
+		else { return "Truck"; }
+	}
+	 else if (zipcode == 94129 && time < 1440) {
+		if(rand < 0.22) { return "Engine"; }
+		else if (rand < 0.39) { return "Support"; }
+		else { return "Truck"; }
+	}
+}
+
+</script>
+</head>
+
+<!-- Set background and header -->
+<h1 style="color:rgb(230, 0, 0)">Emergency Response in San Francisco</h1>
+
+<br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+
+<!-- Create links to important parts of webpage -->
+<ul>
+	<li><a href="#G1">Emergencies by Zipcode</a>
+	<li><a href="#G2">Response Time by Emergency Type</a>
+	<li><a href="#G3">Incident Frequcency</a>
+	<li><a href="#CALC">Calculate dispatch</a>
+	<li><a href="#G4">Dispatch Time by Zipcode</a>
+</ul>
+
+<br> <br> <br> <br> <br>
+
+<!-- Graph: Frequency of Emergencies by Zipcode -->
+<img  id="G1" src="freq_of_zipcodes.png" alt="Frequency of emergencies by zipcode" width="700" height="700">
+
+<!-- Graph: Average Response Time Based on Emergency Type -->
+<img id ="G2" src="response_by_type.png" alt="Average response time by emergency type" width="700" height="700">
+
+<!-- Frequency of Each Incident Type -->
+<img id="G3" src="incident_freq.png" alt="Incident Frequency" width="700" height="700">
+
+<!-- Calculates dispatch given address and time -->
+<h4 style="text-align:center;" id="CALC">Calculate dispatch time</h4>
+
+Time:<br>
+<input type="text" name="time" id="time_input" value="mm/dd/yyy --:--  --">
+<br>
+Address:<br>
+<input type="text" name="address" id="address_input" value="Street, City, State Zipcode" style="width: 185px">
+<br><br>
+<!--</form>-->
+<button onclick="time_and_address()">Submit</button>
+<p id="output"></p>
+
+<!-- Longest Dispatch -->
+<img id="G4" src="response_by_zipcode.png" alt="Longest dispatch" width="700" height="700">
+<br>
+<p>These are the busiest areas of San Francisco and more emergency facilities should be put in place.<p>
+
+
+</body>
