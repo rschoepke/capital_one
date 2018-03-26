@@ -1,0 +1,12 @@
+<script src="papaparse.min.js"></script>
+
+<script type="text/javascript">
+	var data = (function parse_data() {
+		var file = new File("C:Users/rache/Desktop/Capital\ One/javascript_input.csv");
+		Papa.parse(file, {
+		complete: function(results) {
+		}
+		});
+		return results.data;
+	})();
+</script>

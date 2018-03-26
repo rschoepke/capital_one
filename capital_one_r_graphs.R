@@ -170,3 +170,147 @@ legend("topright", emergency_types, cex = 0.65,
        fill = rainbow(length(freq)))
 dev.off()
 
+# Make vector of all the different emergency types
+temp_vector = unlist(all_data$unit_type, use.names = FALSE)
+dispatch_types = unique(temp_vector)
+
+#time1_vec = c()
+#time2_vec = c()
+#time3_vec = c()
+#time4_vec = c()
+#time5_vec = c()
+#time6_vec = c()
+#time7_vec = c()
+#time8_vec = c()
+#time9_vec = c()
+#time10_vec = c()
+#time11_vec = c()
+#time12_vec = c()
+#
+#output_matrix = matrix(nrow = length(zipcodes), ncol = 12)
+
+#zip_index = 1
+#for (i in zipcodes) {
+#  for (j in 1:length(all_data[,44])) {
+#    if (received_times[j] < 120) {
+#      time1_vec = c(time1_vec, all_data[j, 44])
+#    }
+#    else if (received_times[j] < 240) {
+#      time2_vec = c(time2_vec, all_data[j, 44])
+#    }
+#    else if (received_times[j] < 360) {
+#      time3_vec = c(time3_vec, all_data[j, 44])
+#    }
+#    else if (received_times[j] < 480) {
+#      time4_vec = c(time4_vec, all_data[j, 44])
+#    }
+#    else if (received_times[j] < 600) {
+#      time5_vec = c(time5_vec, all_data[j, 44])
+#    }
+#    else if (received_times[j] < 720) {
+#      time6_vec = c(time6_vec, all_data[j, 44])
+#    }
+#    else if (received_times[j] < 840) {
+#      time7_vec = c(time7_vec, all_data[j, 44])
+#    }
+#    else if (received_times[j] < 960) {
+#      time8_vec = c(time8_vec, all_data[j, 44])
+#    }
+#    else if (received_times[j] < 1080) {
+#      time9_vec = c(time9_vec, all_data[j, 44])
+#    }
+#    else if (received_times[j] < 1200) {
+#      time10_vec = c(time10_vec, all_data[j, 44])
+#    }
+#    else if (received_times[j] < 1320) {
+#      time11_vec = c(time11_vec, all_data[j, 44])
+#    }
+#    else {
+#      time12_vec = c(time12_vec, all_data[j, 44])
+#    }
+#  }
+#  temp_time1 = table(time1_vec)
+#  max_time1 = names(temp_time1[temp_time1 == max(temp_time1)])
+#output_matrix[zip_index, 1] = max_time1
+  
+#  temp_time2 = table(time2_vec)
+#  max_time2 = names(temp_time2[temp_time2 == max(temp_time2)])
+#  output_matrix[zip_index, 2] = max_time2
+  
+#  temp_time3 = table(time3_vec)
+#  max_time3 = names(temp_time3[temp_time3 == max(temp_time3)])
+#  output_matrix[zip_index, 3] = max_time3
+  
+#  temp_time4 = table(time4_vec)
+#  max_time4 = names(temp_time4[temp_time4 == max(temp_time4)])
+#  output_matrix[zip_index, 4] = max_time4
+  
+#  temp_time5 = table(time5_vec)
+#  max_time5 = names(temp_time5[temp_time5 == max(temp_time5)])
+#  output_matrix[zip_index, 5] = max_time5
+  
+#  temp_time6 = table(time6_vec)
+#  max_time6 = names(temp_time6[temp_time6 == max(temp_time6)])
+#  output_matrix[zip_index, 6] = max_time5
+  
+#  temp_time7 = table(time7_vec)
+#  max_time7 = names(temp_time7[temp_time7 == max(temp_time7)])
+#  output_matrix[zip_index, 7] = max_time7
+  
+#  temp_time8 = table(time8_vec)
+#  max_time8 = names(temp_time8[temp_time8 == max(temp_time8)])
+#  output_matrix[zip_index, 8] = max_time8
+  
+#  temp_time9 = table(time9_vec)
+#  max_time9 = names(temp_time9[temp_time9 == max(temp_time9)])
+#  output_matrix[zip_index, 9] = max_time9
+  
+#  temp_time10 = table(time10_vec)
+#  max_time10 = names(temp_time10[temp_time10 == max(temp_time10)])
+#  output_matrix[zip_index, 10] = max_time10
+  
+#  temp_time11 = table(time11_vec)
+# max_time11 = names(temp_time11[temp_time11 == max(temp_time11)])
+#  output_matrix[zip_index, 11] = max_time11
+  
+#  temp_time12 = table(time12_vec)
+#  max_time12 = names(temp_time12[temp_time12 == max(temp_time12)])
+#  output_matrix[zip_index, 12] = max_time12
+  
+#  zip_index = zip_index + 1
+#}
+
+#print(output_matrix)
+
+
+#temp_time = table(all_data$unit_type)
+#max_time = names(temp_time[temp_time == max(temp_time)])
+#print(max_time)
+
+#output = data.frame(all_data[,3], received_times, all_data$zipcode_of_incident, all_data$unit_type)
+#write.csv(output, file = "javascript_input.csv")
+
+for (i in zipcodes) {
+  time1 = c()
+  time2 = c()
+  time3 = c()
+  for (j in 1:length(received_times)) {
+    if (received_times[j] < 480 && i == all_data[j, 34]) {
+      time1 = c(time1, all_data[j, 44])
+    }
+    else if (received_times[j] < 960 && i == all_data[j, 34]) {
+      time2 = c(time2, all_data[j, 44])
+    }
+    else if (received_times[j] < 1440 && i == all_data[j, 34]) {
+      time3 = c(time3, all_data[j, 44])
+    }
+  }
+  print(i)
+  table1 = table(time1)
+  print(table1)
+  table2 = table(time2)
+  print(table2)
+  table3 = table(time3)
+  print(table3)
+}
+
